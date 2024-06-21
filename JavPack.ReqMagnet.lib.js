@@ -57,8 +57,7 @@ class ReqMagnet extends Req {
               return {
                 name: item.querySelector(".row a").title,
                 url: item.querySelector(".row a").href,
-                size: item.querySelector(".col-sm-2.text-right.size").textContent.replace(spaceReg, ""),
-                files: 'btsow',
+                size: item.querySelector(".col-sm-2.text-right.size").textContent.replace(spaceReg, "")，              
                 date: item.querySelector(".col-sm-2.text-right.date").textContent,
               };
             })
