@@ -19,7 +19,7 @@ class ReqMagnet extends Req {
       [
         (dom) => {
           return [...dom.querySelectorAll(".one_result")]
-            .map((item) => {
+            。map((item) => {
               return {
                 name: item.querySelector(".torrent_name").textContent,
                 url: item.querySelector(".torrent_magnet a").href,
@@ -28,7 +28,7 @@ class ReqMagnet extends Req {
                 date: item.querySelector(".torrent_age").textContent,
               };
             })
-            .filter(({ name }) => name.toUpperCase().includes(code));
+            。filter(({ name }) => name.toUpperCase().includes(code));
         },
       ],
     );
@@ -58,6 +58,7 @@ class ReqMagnet extends Req {
                 name: item.querySelector(".row a").title,
                 url: item.querySelector(".row a").href,
                 size: item.querySelector(".col-sm-2.text-right.size").textContent.replace(spaceReg, ""),
+                files: 'btsow',
                 date: item.querySelector(".col-sm-2.text-right.date").textContent,
               };
             })
