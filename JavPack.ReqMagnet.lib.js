@@ -40,7 +40,8 @@ class ReqMagnet extends Req {
 
     return this.tasks(
       {
-        url: `${host}/${code}`,
+        url: `${host}/search`,
+        params: { code },
         headers: {
           "Referer": `${host}/index.htm`,
           "Sec-Fetch-Dest": "document",
