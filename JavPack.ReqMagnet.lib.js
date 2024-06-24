@@ -36,14 +36,13 @@ class ReqMagnet extends Req {
 
   static btsow(code) {
     const spaceReg = /\s/g;
-    const host = "https://btsow.motorcycles/";
+    const host = "https://btsow.motorcycles";
 
     return this.tasks(
       {
-        url: `${host}/search`,
-        params: { code },
+        url: `${host}/search/${code}`,
         headers: {
-          "Referer": `${host}/index.htm`,
+          "Referer": `${host}/tags`,
           "Sec-Fetch-Dest": "document",
           "Sec-Fetch-Mode": "navigate",
           "Sec-Fetch-Site": "same-origin",
