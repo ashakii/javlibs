@@ -1,6 +1,11 @@
 class Magnet {
   static crackReg = /破解|-uc?(?![a-z])|uncensored|無碼|流出/i;
   static zhReg = /(?!6k(-C)?)(中文|中字|字幕|-u?c(?![a-z])|.+(?<![a-z])ch(?![a-z])|\dc(?![a-z]))/i;
+  static k4Reg = /4k/i;
+  static ucReg = /-uc|破解-c/i;
+  static chReg = /(?!6k(-C)?|破解-C)(-c)/i;
+  static crReg = /(?!6k(-C)?|破解-C)(破解)/i;
+
 
   static useTransByte() {
     const rules = [
@@ -33,6 +38,7 @@ class Magnet {
   static magnetSort = (a, b) => {
     if (a.zh !== b.zh) return a.zh ? -1 : 1;
     if (a.crack !== b.crack) return a.crack ? -1 : 1;
+    if (a.k4 !== b.k4) return a.k4 ? -1 : 1;
     return parseFloat(b.size) - parseFloat(a.size);
   };
 }
