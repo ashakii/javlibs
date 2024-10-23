@@ -1,5 +1,5 @@
 class Offline {
-  static defaultRename = "${zh}${crack}${k4} ${code}";
+  static defaultRename = "${zh}${crack}${fourk} ${code}";
 
   static defaultOptions = {
     tags: ["genres", "actors"],
@@ -26,7 +26,7 @@ class Offline {
     no: ".${no}",
     zh: "[中字]",
     crack: "[破解]",
-    k4: "[4K]",
+    fourk: "[4K]",
   };
 
   static parseVar(txt, params, rep = "") {
@@ -51,7 +51,7 @@ class Offline {
         rename = rename.toString().trim() || this.defaultRename;
         rename = rename.replaceAll("${zh}", "$zh");
         rename = rename.replaceAll("${crack}", "$crack");
-        rename = rename.replaceAll("${k4}", "$k4");
+        rename = rename.replaceAll("${fourk}", "$fourk");
         if (!rename.includes("${code}")) rename = "${code} " + rename;
 
         if (type === "plain") return { ...item, dir: this.parseDir(dir, params), rename, idx: 0, index };
