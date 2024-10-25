@@ -292,7 +292,7 @@ class Req115 extends Drive115 {
 
   // Search for videos
   static videosSearch(search_value) {
-    return this.filesSearchAll(search_value, { cid: 0, type: 4 });
+    return this.filesSearchAll(search_value, { type: 4 });
   }
 
   // Get video list
@@ -370,10 +370,9 @@ class Req115 extends Drive115 {
     return { videos: videos.filter(filter), file_id };
   }
 
-  static handleRename(files, cid, { rename, renameTxt, zh, crack, k4, subs }) {
+  static handleRename(files, cid, { rename, renameTxt, zh, crack, subs }) {
     rename = rename.replaceAll("$zh", zh || subs.length ? renameTxt.zh : "");
     rename = rename.replaceAll("$crack", crack ? renameTxt.crack : "");
-    rename = rename.replaceAll("$k4", k4 ? renameTxt.k4 : "");
     rename = rename.trim();
 
     files = [...files, ...subs];
@@ -464,7 +463,7 @@ class Req115 extends Drive115 {
     const res = { msg: "", status: "" };
 
     for (let index = 0, { length } = magnets; index < length; index++) {
-      const { url, zh, crack, k4 } = magnets[index];
+      const { url, zh, crack, fourk } = magnets[index];
 
       const { state, errcode, error_msg, info_hash } = await this.lixianAddTaskUrl(url, cid);
       if (!state) {
@@ -488,7 +487,7 @@ class Req115 extends Drive115 {
       }
 
       const { data: subs } = await this.subrips(file_id);
-      if (rename) this.handleRename(videos, file_id, { rename, renameTxt, zh, crack, k4, subs });
+      if (rename) this.handleRename(videos, file_id, { rename, renameTxt, zh, crack, fourk, subs });
       if (tags.length) this.handleTags(videos, tags);
       if (clean) await this.handleClean([...videos, ...subs], file_id);
       if (cover) await this.handleUpload(cover, file_id, `${code}.cover.jpg`);
