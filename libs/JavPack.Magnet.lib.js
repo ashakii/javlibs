@@ -5,7 +5,7 @@ class Magnet {
   static ucReg = /-uc|uc.torrent|破解-c/i;
   static chReg = /(?!6k(-C)?|破解-C)(-c)/i;
   static crReg = /(?!6k(-C)?|破解-C)(破解)/i;
-  static wumaReg = /无码/i;
+  static wumaReg = /无码|無碼/i;
 
 
   static useTransByte() {
