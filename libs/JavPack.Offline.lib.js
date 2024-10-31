@@ -1,24 +1,24 @@
 class Offline {
-  static defaultRename = "${zh}${crack}${fourk} ${code}";
+  static defaultRename = "${zh}${crack}${fourk} ${code} ${title}";
 
   static defaultOptions = {
     tags: ["genres", "actors"],
     clean: true,
     cleanPwd: "",
-    cover: false,
+    cover: true,
   };
 
   static defaultMagnetOptions = {
     filter: ({ size }) => {
       const magnetSize = parseFloat(size);
-      return magnetSize > 3 * 1024 ** 3 || magnetSize < 1;//1073741824字节=1g
+      return magnetSize > 300000000 || magnetSize < 1;
     },
-    max: 10,
+    max: 2,
   };
 
   static defaultVerifyOptions = {
-    filter: ({ s }) => s > 314572800,
-    clean: true,
+    filter: ({ s }) => s > 1 * 1024 ** 3, // 1G
+    clean: false,
     max: 10,
   };
 
