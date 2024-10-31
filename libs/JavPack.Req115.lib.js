@@ -336,7 +336,7 @@ class Req115 extends Drive115 {
   static async verifyTask(info_hash, { regex, codes }, { max, filter }) {
     let file_id = "";
     let videos = [];
-
+    
     for (let index = 0; index < max; index++) {
       if (index) await this.sleep();
       const { tasks } = await this.lixianTaskLists();
@@ -368,6 +368,48 @@ class Req115 extends Drive115 {
     }
 
     return { videos: videos.filter(filter), file_id };
+  }
+
+  static async verifyTaskWuma(info_hash, { regex, codes }, { max, filter }) {
+    let file_id = "";
+    let videos = [];
+
+    for (let index = 0; index < max; index++) {
+      if (index) await this.sleep();
+      const { tasks } = await this.lixianTaskLists();
+
+      const task = tasks.find((task) => task.info_hash === info_hash);
+      if (!task || task.status === -1) break;
+
+      file_id = task.file_id;
+      if (file_id) break;
+    }
+    if (!file_id) return { file_id, videos };
+
+    for (let index = 0; index < max; index++) {
+      if (index) await this.sleep();
+      const { data } = await this.videos(file_id);
+
+      videos = data.filter((item) => regex.test(item.n));
+      if (videos.length) break;
+    }
+
+    if (!videos.length) {
+      const { tasks } = await this.lixianTaskLists();
+      const task = tasks.find((task) => task.info_hash === info_hash);
+
+      if (task.status === 2) {
+        const { data } = await this.videos(file_id);
+        videos = data.filter((item) => codes.some((it) => item.n.includes(it)));
+      }
+    }
+    // 如果 videos 数组非空，筛选出具有最大 s 值的项
+    if (videos.length) {
+      const maxS = Math.max(...videos.map(item => item.s));
+      videos = videos.filter(item => item.s === maxS);
+    }
+
+    return { videos, file_id };
   }
 
   static handleRename(files, cid, { rename, renameTxt, zh, crack, subs }) {
@@ -422,7 +464,7 @@ class Req115 extends Drive115 {
     return this.filesBatchLabel(files.map(({ fid }) => fid).toString(), labels.toString());
   }
 
-  static async handleClean(files, cid) {
+  static async handleClean(files, cid,) {
     await this.filesMove(
       files.map((file) => file.fid),
       cid,
@@ -500,4 +542,51 @@ class Req115 extends Drive115 {
 
     return res;
   }
+
+  static async handleSmartOfflineWuma(options, magnets) {
+    const { dir, regex, codes, verifyOptions, code, rename, renameTxt, tags, clean, cleanPwd, cover } = options;
+    const cid = await this.generateCid(dir);
+
+    if (!cid) return { status: "error", msg: `获取目录失败: ${dir.join("/")}` };
+    const res = { msg: "", status: "" };
+
+    for (let index = 0, { length } = magnets; index < length; index++) {
+      const { url, zh, crack, fourk } = magnets[index];
+
+      const { state, errcode, error_msg, info_hash } = await this.lixianAddTaskUrl(url, cid);
+      if (!state) {
+        res.msg = error_msg;
+        res.status = "error";
+        res.currIdx = index;
+        if (errcode === 10008) continue;
+        if (errcode === 911) res.status = "warn";
+        break;
+      }
+
+      const { file_id, videos } = await this.verifyTaskWuma(info_hash, { regex, codes }, verifyOptions);
+      if (!videos.length) {
+        if (verifyOptions.clean) {
+          this.lixianTaskDel([info_hash]);
+          if (file_id) this.rbDelete([file_id], cid);
+        }
+        res.msg = `${code} 离线任务失败`;
+        res.status = "error";
+        continue;
+      }
+
+      const { data: subs } = await this.subrips(file_id);
+      if (rename) this.handleRename(videos, file_id, { rename, renameTxt, zh, crack, fourk, subs });
+      if (tags.length) this.handleTags(videos, tags);
+      if (clean) await this.handleClean([...videos, ...subs], file_id);
+      if (cover) await this.handleUpload(cover, file_id, `${code}.cover.jpg`);
+      if (cleanPwd && clean) this.rbCleanByCid(file_id, cleanPwd);
+
+      res.msg = `${code} 离线任务成功`;
+      res.status = "success";
+      break;
+    }
+
+    return res;
+  }
+
 }
