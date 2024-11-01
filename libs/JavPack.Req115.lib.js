@@ -336,7 +336,7 @@ class Req115 extends Drive115 {
   static async verifyTask(info_hash, { regex, codes }, { max, filter }) {
     let file_id = "";
     let videos = [];
-    
+
     for (let index = 0; index < max; index++) {
       if (index) await this.sleep();
       const { tasks } = await this.lixianTaskLists();
@@ -415,6 +415,7 @@ class Req115 extends Drive115 {
   static handleRename(files, cid, { rename, renameTxt, zh, crack, subs }) {
     rename = rename.replaceAll("$zh", zh || subs.length ? renameTxt.zh : "");
     rename = rename.replaceAll("$crack", crack ? renameTxt.crack : "");
+    rename = rename.replaceAll("$fourk", fourk ? renameTxt.fourk : "");
     rename = rename.trim();
 
     files = [...files, ...subs];
