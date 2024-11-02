@@ -16,18 +16,23 @@ class Util {
   }
 
   static codeParse(code) {
-    const codes = code.split(/-|_/);
-    const sep = "\\s?(0|-|_){0,2}\\s?";
+    // 修改分割逻辑，同时处理横线、下划线和空格
+    const codes = code.split(/[-_\s]+/);
+
+    // 修改分隔符模式，增加对空格的支持
+    const sep = "\\s*(0|-|_|\\s){0,2}\\s*";
 
     let pattern = codes.join(sep);
+
+    // 特殊情况处理保持不变
     if (/^fc2/i.test(code)) pattern = `${codes[0]}${sep}(ppv)?${sep}${codes.at(-1)}`;
     if (/^heyzo/i.test(code)) pattern = `${codes[0]}${sep}(\\w){0,2}${sep}${codes.at(-1)}`;
-    if (/^heydouga/i.test(code)) pattern = `${codes[0]}${sep}${codes[1]}${sep}${codes[2]}(\\-HD)?`;
 
     return {
       codes,
       prefix: codes[0],
-      regex: new RegExp(`(?<![a-z])${pattern}(?!\\d)`, "i"),
+      // 修改正则表达式，使其更灵活地处理边界情况
+      regex: new RegExp(`(?<![a-z])(${pattern})(?![\\w-])`, "i"),
     };
   }
 
