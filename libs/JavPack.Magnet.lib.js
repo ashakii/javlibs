@@ -37,8 +37,8 @@ class Magnet {
   }
 
   static magnetSort = (a, b) => {
-    //const cRegex = /[-_]C(_|$|\s)/; // 匹配 -C, -C_GG5, -C字幕 等形式
-    const cRegex = /[-_][uU][cC]|[-_][cC](?:_|$|\s|字幕)/; // 匹配 -UC, -uc, -C 等形式
+    const cRegex = /[-_]C(_|$|\s)/; // 匹配 -C, -C_GG5, -C字幕 等形式
+    //const cRegex = /[-_][uU][cC]|[-_][cC](?:_|$|\s|字幕)/; // 匹配 -UC, -uc, -C 等形式
     const aIsC = cRegex.test(a.name);
     const bIsC = cRegex.test(b.name);
 
