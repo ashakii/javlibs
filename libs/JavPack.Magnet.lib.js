@@ -3,7 +3,7 @@ class Magnet {
   static zhReg = /中文|中字|字幕|-u?c(?![a-z])|.+(?<![a-z])ch(?![a-z])|\dc(?![a-z])/i;
   static fourkReg = /4k/i;
   //static zhReg = /^(?!.*(?:6k(?:-C)?|-C_GG5|C字幕|C_X1080X|CD|-cd\d)).*(-c)/i;
-  static ucReg = /-uc|破解-c|(UC.torrent)|C.torrent.无码破解/i;
+  static ucReg = /-uc|破解-c|(UC.torrent)|C.torrent.无码/i;
   static chReg = /(?!6k(-C)?|破解-C)(-c)/i;
   static crReg = /(?!6k(-C)?|破解-C)(破解)/i;
   static wumaReg = /无码|無碼|流出/i;
