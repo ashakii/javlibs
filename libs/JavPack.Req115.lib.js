@@ -412,7 +412,7 @@ class Req115 extends Drive115 {
     return { videos, file_id };
   }
 
-  static handleRename(files, cid, { rename, renameTxt, zh, crack, subs }) {
+  static handleRename(files, cid, { rename, renameTxt, zh, crack, fourk, subs }) {
     rename = rename.replaceAll("$zh", zh || subs.length ? renameTxt.zh : "");
     rename = rename.replaceAll("$crack", crack ? renameTxt.crack : "");
     rename = rename.replaceAll("$fourk", fourk ? renameTxt.fourk : "");
@@ -443,7 +443,7 @@ class Req115 extends Drive115 {
       items
         .toSorted((a, b) => a.n.localeCompare(b.n))
         .forEach(({ fid }, idx) => {
-          const no = noTxt.replaceAll("${no}", `${idx + 1}`.padStart(2, "0"));
+          const no = noTxt.replaceAll("${no}", `${idx + 1}`);
           renameObj[fid] = `${rename}${no}.${ico}`;
         });
     }
