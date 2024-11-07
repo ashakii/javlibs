@@ -1,9 +1,9 @@
 class Offline {
-  static defaultRename = "${zh}${crack}${fourk} ${code} ${title}";
+  static defaultRename = "${zh}${crack}${fourk} ${code}";
 
   static defaultOptions = {
     tags: ["genres", "actors"],
-    clean: true,
+    clean: ture,
     cleanPwd: "",
     cover: true,
   };
@@ -23,7 +23,7 @@ class Offline {
   };
 
   static defaultRenameTxt = {
-    no: ".${no}",
+    no: "-cd${no}",
     zh: "[中字]",
     crack: "[破解]",
     fourk: "[4K]",
