@@ -7,7 +7,7 @@ class Magnet {
   static chReg = /(?!6k(-C)?|破解-C)(-c)/i;
   static crReg = /(?!6k(-C)?|破解-C)(破解)/i;
   static wumaReg = /无码|無碼|流出/i;
-  static vrReg = /VR|時間|BEST/i;
+  static vrReg = /VR|時間|BEST|連発/i;
 
   static useTransByte() {
     const rules = [
