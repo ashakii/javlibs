@@ -7,7 +7,7 @@ class Magnet {
   static chReg = /(?!6k(-C)?|破解-C)(-c)/i;
   static crReg = /(?!6k(-C)?|破解-C)(破解)/i;
   static wumaReg = /无码|無碼|流出/i;
-  static vrReg = /VR|時間|BEST|連発/i;
+  static vrReg = /VR|時間/i;
 
   static useTransByte() {
     const rules = [
@@ -38,10 +38,16 @@ class Magnet {
   }
 
   static magnetSort = (a, b) => {
+    const toRegex = /\.torrent$/;
+    const aIsTo = toRegex.test(a.name);
+    const bIsTo = toRegex.test(b.name);
+
     const cRegex = /[-_]C(_|$|\s)/; // 匹配 -C, -C_GG5, -C字幕 等形式
-    //const cRegex = /[-_][uU][cC]|[-_][cC](?:_|$|\s|字幕)/; // 匹配 -UC, -uc, -C 等形式
     const aIsC = cRegex.test(a.name);
     const bIsC = cRegex.test(b.name);
+
+    // 优先.torrent
+    if (aIsTo !== bIsTo) return aIsTo ? -1 : 1;
 
     // 优先 -C 相关
     if (aIsC !== bIsC) return aIsC ? -1 : 1;
