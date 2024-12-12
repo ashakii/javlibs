@@ -391,10 +391,8 @@ class Req115 extends Drive115 {
     return { videos: videos.filter(filter), file_id };
   }
 
-  static async verifyTasked2k(info_hash, { regex, codes }, { max, filter }) {
+  static async verifyTasked2k(info_hash, max) {
     let file_id = "";
-    let videos = [];
-
     for (let index = 0; index < max; index++) {
       if (index) await this.sleep();
       const { tasks } = await this.lixianTaskLists();
@@ -402,35 +400,11 @@ class Req115 extends Drive115 {
       const task = tasks.find((task) => task.info_hash === info_hash);
       if (!task || task.status === -1) break;
 
-      file_id = task.file_id;
+      file_id = task.delete_file_id;
       if (file_id) break;
     }
-    if (!file_id) return { file_id, videos };
 
-    for (let index = 0; index < max; index++) {
-      if (index) await this.sleep();
-      const { data } = await this.videos(file_id);
-
-      videos = data.filter((item) => regex.test(item.n));
-      if (videos.length) break;
-    }
-
-    if (!videos.length) {
-      const { tasks } = await this.lixianTaskLists();
-      const task = tasks.find((task) => task.info_hash === info_hash);
-
-      if (task.status === 2) {
-        const { data } = await this.videos(file_id);
-        videos = data.filter((item) => codes.some((it) => item.n.includes(it)));
-      }
-    }
-    // 如果 videos 数组非空，筛选出具有最大 s 值的项
-    if (videos.length) {
-      const maxS = Math.max(...videos.map(item => item.s));
-      videos = videos.filter(item => item.s === maxS);
-    }
-
-    return { videos, file_id };
+    return file_id;
   }
 
   static handleRename(files, cid, { rename, renameTxt, zh, crack, guochan, subs }) {
