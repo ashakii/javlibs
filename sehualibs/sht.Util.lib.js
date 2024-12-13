@@ -16,7 +16,7 @@ class Util {
   }
 
   static codeParse(code) {
-    const codes = code.split(/-|_/);
+    const codes = code.split(/-|_|,|，| /).filter(Boolean);
     const sep = "\\s?(0|-|_){0,2}\\s?";
 
     let pattern = codes.join(sep);
