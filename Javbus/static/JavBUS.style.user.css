@@ -1,70 +1,98 @@
+.ad-box,
+.alert-info {
+  display: none !important;
+}
+
+#waterfall,
+.masonry {
+  all: unset !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  gap: 15px;
+  width: 100% !important;
+}
+
+#waterfall>.item,
+.masonry>.item {
+  all: unset !important;
+  flex: 0 0 25% !important;
+  box-sizing: border-box !important;
+  margin-bottom: 12px;
+}
+
+.movie-box {
+  display: flex !important;
+  flex-direction: column !important;
+  width: auto !important;
+  margin: 5px !important;
+  height: 400px !important;
+}
+
+.photo-frame {
+  margin: 5px !important;
+  height: 245px !important;
+}
+
+.photo-frame img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.photo-info {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 370px;
+}
+
 button.zy-offline {
   font-size: 12px !important;
-  /* 设置按钮的字体大小 */
   padding: 5px 12px !important;
-  /* 为按钮增加内边距 */
   color: white;
-  /* 按钮文字颜色 */
   border: none !important;
-  /* 移除默认边框 */
   cursor: pointer !important;
-  /* 鼠标悬浮时显示手型光标 */
   position: relative !important;
-  /* 相对定位 */
   overflow: hidden;
-  /* 隐藏超出部分 */
 }
 
 button.zy-offline:hover {
   background-color: rgb(102, 252, 142) !important;
-  /* 按钮悬浮时的背景色 */
   color: #000000 !important;
-  /* 按钮悬浮时的文字颜色 */
 }
 
-/* 加载状态 */
 .button.is-loading {
   pointer-events: none;
-  /* 禁用点击 */
   color: transparent;
-  /* 隐藏文字 */
 }
 
-/* 禁用状态 */
 .button:disabled {
   opacity: 0.8;
-  /* 半透明效果 */
   cursor: not-allowed !important;
-  /* 禁用鼠标指针 */
 }
 
-/* 中央进度条 */
 .button.is-loading::after {
   content: "";
   position: absolute;
   top: 50%;
-  /* 垂直居中 */
   left: 0;
   width: 100%;
   height: 2px;
-  /* 进度条高度 */
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
   transform: translateY(-50%);
-  /* 垂直居中 */
   animation: loading 1.5s infinite;
-  /* 循环播放 */
 }
 
-/* 动画关键帧 */
 @keyframes loading {
   0% {
     transform: translate(-100%, -50%);
-    /* 初始位置 */
   }
 
   100% {
     transform: translate(100%, -50%);
-    /* 结束位置 */
   }
 }
 
@@ -94,45 +122,4 @@ button.is-fourk {
 
 button.is-gongyan {
   background-color: #d30086;
-}
-
-.movie-box {
-  width: 485px !important;
-  margin: 10px !important;
-  height: 424px !important;
-  background-color: #fafafa !important;
-  transition: all 0.3s cubic-bezier(0, 0, 0.5, 1);
-
-}
-
-.movie-box:focus,
-.movie-box:hover {
-  box-shadow: 0 .5em 1em -.125em rgba(10, 10, 10, .1), 0 0 0 1px #485fc7;
-}
-
-.movie-box img,
-.movie-box .photo-frame {
-  height: 312px !important;
-  vertical-align: top !important;
-  object-position: top !important;
-  margin: 0 !important;
-}
-
-.movie-box .photo-info {
-  padding: 5px !important;
-}
-
-.photo-info {
-  white-space: nowrap;
-  /* 强制文本不换行 */
-  overflow: hidden;
-  /* 隐藏溢出内容 */
-  text-overflow: ellipsis;
-  /* 显示省略号 */
-}
-
-#waterfall {
-  width: 1920px !important;
-  left: auto !important;
-  /* 左边距 */
 }
