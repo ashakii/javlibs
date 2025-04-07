@@ -3,18 +3,19 @@
 h4[style="position:relative"] {
   display: none !important;
 }
+
 #waterfall {
   width: 100%;
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 15px auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 30px;
 }
 
 #waterfall .item {
   width: 420px;
-  margin: 10px;
   border-radius: 5px;
   display: flex;
 }
@@ -25,7 +26,12 @@ h4[style="position:relative"] {
   justify-content: space-between;
   width: 100%;
   border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+  box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+}
+
+.movie-box:hover {
+  border: 1px solid #0047a3;
+  transition: 0.3s;
 }
 
 .movie-box .photo-frame,
@@ -43,6 +49,7 @@ h4[style="position:relative"] {
 }
 
 .movie-box .photo-info {
+  margin: 0 10px 10px 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
