@@ -56,6 +56,14 @@ h4[style="position:relative"] {
   width: 420px;
   border-radius: 5px;
   display: flex;
+
+  &:has(.is-normal){border: 5px solid var(--is-normal)};
+  &:has(.is-crack){border: 5px solid var(--is-crack)};
+  &:has(.is-fourk){border: 5px solid var(--is-fourk)};
+  &:has(.is-wuma){border: 5px solid var(--is-wuma)};
+  &:has(.is-zh){border: 5px solid var(--is-zh)};
+  &:has(.is-uc){border: 5px solid var(--is-uc)};
+
 }
 
 .movie-box {
