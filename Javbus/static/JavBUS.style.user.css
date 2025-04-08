@@ -158,26 +158,33 @@ h4[style="position:relative"] {
   box-shadow: 0 0 3px rgba(0, 0, 0, .5);
 }
 
+a.zy-match {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .rematch {
   width: 14px;
   height: 14px;
   border-radius: 50% !important;
 }
 
-.item:has(.avatar-box) {
+.item:has(.avatar-box)&:not(.text-center) {
   width: 100% !important;
   max-width: 1320px !important;
   box-shadow: 0 0 3px rgba(0, 0, 0, .5);
 }
 
-.avatar-box {
+.avatar-box:not(.text-center) {
   display: flex;
   margin: 0 auto;
   justify-content: left;
   width: 100%;
+  box-shadow: 0 0 3px rgba(0, 0, 0, .5);
 }
 
-.avatar-box .photo-info {
+.avatar-box:not(.text-center) .photo-info {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr);
   max-height: 125px;
