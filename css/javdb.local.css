@@ -1,0 +1,5 @@
+.app-desktop-banner,
+.sub-header,
+.top-meta {
+    display: none !important;
+}
