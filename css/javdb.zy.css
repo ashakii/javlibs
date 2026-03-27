@@ -1,0 +1,295 @@
+:root {
+    --x-iso: #2E333D;
+    --x-uc: #FF6685;
+    --x-zh: #FFBF29;
+    --x-adzh: #cd9000;
+    --x-crack: #00a5eb;
+    --x-restored: #016a96;
+    --x-ed2k: #016a96;
+    --x-fourk: #3f55fe;
+    --x-putong: #5ACD99;
+    --x-trans: all 0.3s cubic-bezier(0, 0, 0.5, 1);
+    --x-wuma: #eb0099;
+    --x-gongyan: #5ACD99;
+    --x-fc2: #5ACD99;
+    --x-vr: #5ACD99;
+    --x-nvtong: #5ACD99;
+    --x-heji: #5ACD99;
+
+    --x-outline: 0.4rem;
+}
+
+.magnets-box,
+.matchs-box,
+.actors-box {
+    display: flex;
+    gap: 0.2rem;
+    padding: 0.2rem 0.4rem;
+    min-height: 2rem;
+}
+
+.matchs-box,
+.zy-magnet,
+.actors-box {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(5rem, 1fr));
+    width: 100%;
+    gap: 0.2rem;
+}
+
+.magnets-box {
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    z-index: 22;
+    width: 100%;
+    background-color: rgba(63, 63, 63, 0.2);
+}
+
+.actors-box {
+    position: absolute;
+    top: 0;
+    z-index: 22;
+}
+
+.tags-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.2rem;
+    padding: 0.6rem 0.4rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+
+.zy-btn {
+    font-size: 0.8rem;
+    border: none;
+    color: #fff !important;
+    background: #48c78e;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    position: relative;
+    min-height: 1.6rem;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.zy-tag {
+    display: inline-flex;
+    align-items: center;
+    color: #fff;
+    background-color: #4175fb;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+}
+
+
+
+.is-putong {
+    --c: var(--x-putong);
+}
+
+.is-uc {
+    --c: var(--x-uc);
+}
+
+.is-zh {
+    --c: var(--x-zh);
+}
+
+.is-adzh {
+    --c: var(--x-adzh);
+}
+
+.is-restored {
+    --c: var(--x-restored);
+}
+
+.is-ed2k {
+    --c: var(--x-ed2k);
+}
+
+.is-crack {
+    --c: var(--x-crack);
+}
+
+.is-iso {
+    --c: var(--x-iso);
+}
+
+
+.is-fourk {
+    --b: var(--x-fourk);
+}
+
+.is-wuma {
+    --b: var(--x-wuma);
+}
+
+.is-gongyan {
+    --b: var(--x-gongyan);
+}
+
+.is-fc2 {
+    --b: var(--x-fc2);
+}
+
+.is-vr {
+    --b: var(--x-vr);
+}
+
+.is-nvtong {
+    --b: var(--x-nvtong);
+}
+
+.is-heji {
+    --b: var(--x-heji);
+}
+
+
+.zy-btn[class*="is-"] {
+    color: #fff;
+    background: linear-gradient(135deg,
+            var(--c, var(--b)),
+            var(--b, var(--c)));
+}
+
+.is-actor {
+    box-sizing: border-box;
+    color: #eb0099 !important;
+    border: 1px solid #eb0099;
+}
+
+.is-actor:hover {
+    background-color: #eb0099;
+    color: #fff !important;
+}
+
+.is-zh {
+    color: #000 !important;
+}
+
+.is-iso {
+    color: #ffbf00 !important;
+}
+
+.matchs-box,
+.item {
+    translate: var(--x-trans);
+
+    &:has(.zy-match.is-putong) {
+        box-shadow: 0 var(--x-shadow) 0 var(--x-putong);
+        outline: var(--x-outline) solid var(--x-putong);
+    }
+
+    &:has(.zy-match.is-gongyan) {
+        box-shadow: 0 var(--x-shadow) 0 var(--x-putong);
+        outline: var(--x-outline) solid var(--x-putong);
+    }
+
+    &:has(.zy-match.is-vr) {
+        box-shadow: 0 var(--x-shadow) 0 var(--x-putong);
+        outline: var(--x-outline) solid var(--x-putong);
+    }
+
+    &:has(.zy-match.is-fc2) {
+        box-shadow: 0 var(--x-shadow) 0 var(--x-putong);
+        outline: var(--x-outline) solid var(--x-putong);
+    }
+
+    &:has(.zy-match.is-crack) {
+        box-shadow: 0 var(--x-shadow) 0 var(--x-crack);
+        outline: var(--x-outline) solid var(--x-crack);
+    }
+
+    &:has(.zy-match.is-restored) {
+        box-shadow: 0 var(--x-shadow) 0 var(--x-restored);
+        outline: var(--x-outline) solid var(--x-restored);
+    }
+
+    &:has(.zy-match.is-fourk) {
+        box-shadow: 0 var(--x-shadow) 0 var(--x-fourk);
+        outline: var(--x-outline) solid var(--x-fourk);
+    }
+
+    &:has(.zy-match.is-adzh) {
+        box-shadow: 0 var(--x-shadow) 0 var(--x-adzh);
+        outline: var(--x-outline) solid var(--x-adzh);
+    }
+
+    &:has(.zy-match.is-zh) {
+        box-shadow: 0 var(--x-shadow) 0 var(--x-zh);
+        outline: var(--x-outline) solid var(--x-zh);
+    }
+
+    &:has(.zy-match.is-uc) {
+        box-shadow: 0 var(--x-shadow) 0 var(--x-uc);
+        outline: var(--x-outline) solid var(--x-uc);
+    }
+
+    &:has(.zy-match.is-wuma) {
+        box-shadow: 0 var(--x-shadow) 0 var(--x-wuma);
+        outline: var(--x-outline) solid var(--x-wuma);
+    }
+}
+
+.badmovie {
+    background-color: #000 !important;
+}
+
+.zy-loading::before {
+    content: "";
+    height: 1.5rem;
+    width: 1.5rem;
+    border: 0.2rem solid #00ffd0;
+    border-radius: 0.2rem;
+    box-shadow: 0 0 0.3rem #00ffd0, inset 0 0 0.3rem #00ffd0;
+    position: absolute;
+    animation: 2s zyloading ease-in-out infinite;
+}
+
+@keyframes zyloading {
+    0% {
+        transform: rotateX(0) rotateY(0) rotateZ(0);
+    }
+
+    33% {
+        transform: rotateX(180deg) rotateY(0) rotateZ(0);
+    }
+
+    66% {
+        transform: rotateX(180deg) rotateY(180deg) rotateZ(0);
+    }
+
+    100% {
+        transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg);
+    }
+}
+
+.zytools-box {
+    position: fixed;
+    display: flex;
+    bottom: 0.75rem;
+    z-index: 88;
+    gap: 0.2rem;
+}
+
+.in-details {
+    position: fixed;
+    display: flex;
+    z-index: 22;
+}
