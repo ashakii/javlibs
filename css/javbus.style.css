@@ -1,0 +1,35 @@
+.ad-box,
+.alert-info,
+h4[style="position:relative"],
+.movie:has(#magnet-table),
+#mag-submit-show {
+    display: none !important;
+}
+
+#waterfall:not(:has(#waterfall)) {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(400px, 1fr));
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.item {
+    width: 100% !important;
+
+    .photo-frame {
+        background-size: cover;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .photo-info {
+        span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 100%;
+        }
+    }
+}
