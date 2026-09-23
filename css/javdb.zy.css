@@ -10,6 +10,8 @@
     --x-putong: #5ACD99;
     --x-trans: all 0.3s cubic-bezier(0, 0, 0.5, 1);
     --x-wuma: #eb0099;
+    --x-wumaad: #ff44bb;
+    --x-liuchu: #bb0079;
     --x-gongyan: #5ACD99;
     --x-fc2: #5ACD99;
     --x-vr: #5ACD99;
@@ -103,7 +105,8 @@
     --c: var(--x-putong);
 }
 
-.is-uc {
+.is-uc,
+.is-zh.is-crack {
     --c: var(--x-uc);
 }
 
@@ -138,6 +141,14 @@
 
 .is-wuma {
     --b: var(--x-wuma);
+}
+
+.is-wuma.is-wumaad {
+    --b: var(--x-wumaad);
+}
+
+.is-liuchu {
+    --b: var(--x-liuchu);
 }
 
 .is-gongyan {
@@ -211,6 +222,11 @@
         outline: var(--x-outline) solid var(--x-putong);
     }
 
+    &:has(.zy-match.is-iso) {
+        box-shadow: 0 var(--x-shadow) 0 var(--x-iso);
+        outline: var(--x-outline) solid var(--x-iso);
+    }
+
     &:has(.zy-match.is-crack) {
         box-shadow: 0 var(--x-shadow) 0 var(--x-crack);
         outline: var(--x-outline) solid var(--x-crack);
@@ -245,6 +261,11 @@
         box-shadow: 0 var(--x-shadow) 0 var(--x-wuma);
         outline: var(--x-outline) solid var(--x-wuma);
     }
+
+    &:has(.zy-match.is-wumaad) {
+        box-shadow: 0 0 8px var(--x-wumaad);
+        outline: var(--x-outline) solid var(--x-wumaad);
+    }
 }
 
 .badmovie {
@@ -260,6 +281,7 @@
     box-shadow: 0 0 0.3rem #00ffd0, inset 0 0 0.3rem #00ffd0;
     position: absolute;
     animation: 2s zyloading ease-in-out infinite;
+    z-index: 999;
 }
 
 @keyframes zyloading {
@@ -284,12 +306,81 @@
     position: fixed;
     display: flex;
     bottom: 0.75rem;
-    z-index: 88;
+    z-index: 999;
     gap: 0.2rem;
 }
 
 .in-details {
-    position: fixed;
     display: flex;
-    z-index: 22;
+    background-color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.mag-list {
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.magnet-item,
+.magnet-name a,
+.magnet-tags,
+.magnet-buttons {
+    display: flex;
+    padding: 0.2rem 0.4rem;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.magnet-name {
+    margin-right: auto;
+    max-width: 25%;
+
+    a {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: block;
+    }
+}
+
+.odd {
+    background-color: #efefef;
+}
+
+.tags-details {
+    display: flex;
+    padding: 0.2rem 0.4rem;
+    gap: 0.2rem;
+}
+
+.rename-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.rename-modal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+}
+
+.rename-input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.rename-tags button {
+    margin: 4px;
 }
