@@ -3,3 +3,30 @@
 .top-meta {
     display: none !important;
 }
+
+.container {
+    max-width: 100% !important;
+}
+
+.movie-list {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 480px)) !important;
+    gap: 1.5rem !important;
+}
+
+.movie-list .item .cover:hover img {
+    transform: none !important;
+    z-index: 0 !important;
+}
+
+.item {
+    position: relative;
+}
+
+.box:not(:last-child) {
+    margin-bottom: 0 !important;
+}
+
+a.box:focus,
+a.box:hover {
+    box-shadow: none !important;
+}
